@@ -1,17 +1,26 @@
 require 'spec_helper'
+
 describe "Static pages" do
-  describe "Home page" do
-    it "should have the h1 'Sample App'" do
-      visit '/static_pages/home'
-      expect(page).to have_content('Sample App')
-	end
-	    it "should have the title 'Home'" do
+
+  	describe "Home page" do
+
+	    it "should have the h1 'Sample App'" do
 	      visit '/static_pages/home'
-	      expect(page).to have_title("Ruby on Rails Tutorial Sample App | Home")
+	      expect(page).to have_content('Sample App')
+		end
+	    it "should have the base title 'Home'" do
+	      visit '/static_pages/home'
+	      expect(page).to have_title("Ruby on Rails Tutorial Sample App")
 		end 
+
+		it "it should not have a custom page title" do
+	      visit '/static_pages/home'
+	      page.should_not have_title('| Home')
+		end 
+
 	end
 
-	  describe "Help page" do
+  	describe "Help page" do
 	    it "should have the h1 'Help'" do 
 	      visit '/static_pages/help' 
 	      expect(page).to have_content('Help')
